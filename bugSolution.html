@@ -1,0 +1,15 @@
+<p>This example demonstrates the correct method of inter-iframe communication using postMessage, addressing the cross-origin issue:
+</p><pre><code>&lt;iframe src="https://example.com/page1" id="frame1"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://another-example.com/page2" id="frame2"&gt;&lt;/iframe&gt;
+&lt;script&gt;
+  window.addEventListener('message', function(event) {
+    //Check the origin of the message
+    if (event.origin === "https://example.com") {
+      console.log('Received:', event.data);
+    }
+  });
+  document.getElementById('frame1').addEventListener('load', function() {
+    //Send message from frame1 to frame2
+    document.getElementById('frame1').contentWindow.postMessage('message from frame1', 'https://another-example.com');
+  });
+&lt;/script&gt;</code></pre>

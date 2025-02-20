@@ -1,0 +1,8 @@
+<p>This is an example of an uncommon HTML bug that can occur when using nested iframes.  The issue arises from incorrect handling of cross-origin resource sharing (CORS) policies and how iframes interact within a complex HTML structure.</p><pre><code>&lt;iframe src="https://example.com/page1" id="frame1"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://another-example.com/page2" id="frame2"&gt;&lt;/iframe&gt;
+&lt;script&gt;
+  document.getElementById('frame1').addEventListener('load', function() {
+    //Attempt to access frame2 from within frame1
+    document.getElementById('frame2').contentWindow.postMessage('message', '*');
+  });
+&lt;/script&gt;</code></pre>
